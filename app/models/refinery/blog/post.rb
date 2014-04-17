@@ -26,6 +26,8 @@ module Refinery
       validates :body,  :presence => true
       validates :published_at, :author, :presence => true
 
+      belongs_to :image, :class_name => '::Refinery::Image'
+
       validates :source_url, :url => { :if => 'Refinery::Blog.validate_source_url',
                                       :update => true,
                                       :allow_nil => true,
@@ -33,7 +35,7 @@ module Refinery
                                       :verify => [:resolve_redirects]}
 
       attr_accessible :title, :body, :custom_teaser, :tag_list, :draft, :published_at, :custom_url, :author
-      attr_accessible :browser_title, :meta_description, :user_id, :category_ids
+      attr_accessible :browser_title, :meta_description, :user_id, :category_ids, :image_id, :image_description
       attr_accessible :source_url, :source_url_title
       attr_accessor :locale
 
